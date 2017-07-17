@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./assets/css/jquery.fullPage.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/styles.css" />
+  <link rel="stylesheet" type="text/css" href="./assets/js/main.css" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./assets/js/vendor.bundle.js"></script>
+  <script type="text/javascript" src="./assets/js/site.bundle.js"></script>
+
+</head>
+<body>
+  <div style="position: absolute">{{something}}</div>
+  <ul id="homeMenu" style="position: absolute; z-index: 1">
+    <li data-menuanchor="heritage"><a href="#heritage">01. Our Heritage</a></li>
+    <li data-menuanchor="releases"><a href="#releases">02. Releases</a></li>
+    <li data-menuanchor="process"><a href="#process">03. The Process</a></li>
+    <li data-menuanchor="recipes"><a href="#recipes">04. Recipes</a></li>
+    <li data-menuanchor="find"><a href="#find">05. Find KY OWL</a></li>
+  </ul>
+  <div id="fullpage">
+    <!-- partials -->
+{{{contents}}}
+    <!-- end of partials -->
+  </div>
+</body>
+</html>
