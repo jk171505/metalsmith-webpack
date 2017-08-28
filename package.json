@@ -1,14 +1,14 @@
 {
-  "name": "red7e_kentucky_owl",
+  "name": "metalsmith-webpack",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "fullpage.js": "^2.9.4"
   },
   "devDependencies": {
-    "css-loader": "^0.28.4",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "ajv": "^5.2.2",
+    "css-loader": "^0.28.5",
+    "extract-text-webpack-plugin": "^3.0.0",
     "handlebars": "^4.0.10",
     "metalsmith": "^2.3.0",
     "metalsmith-express": "^0.1.0",
@@ -18,16 +18,14 @@
     "metalsmith-swig": "^1.2.1",
     "metalsmith-watch": "^1.0.3",
     "metalsmith-webpack": "^1.0.3",
-    "node-sass": "^4.0.0",
-    "sass-loader": "^4.1.1",
+    "node-sass": "^4.5.3",
     "script-loader": "^0.7.0",
     "style-loader": "^0.18.2",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "webpack": "^3.5.5"
   },
   "scripts": {
-    "build": "node .",
-    "start": "node . --livereload",
-    "test": "test"
+    "start": "node ."
   },
   "author": "Janusz",
   "license": "ISC"

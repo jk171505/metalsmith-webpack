@@ -3,14 +3,8 @@ var layouts = require('metalsmith-layouts');
 var inplace = require('metalsmith-in-place');
 var permalinks = require('metalsmith-permalinks');
 var webpack = require('metalsmith-webpack');
-var watch             = require('metalsmith-watch');
-var metalsmithExpress = require('metalsmith-express');
 var path = require('path');
-//var sass = require('metalsmith-sass');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-
-var withLiveReload = process.argv.indexOf('--livereload') > -1;
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 metalsmith(__dirname)
   .metadata({
@@ -19,16 +13,6 @@ metalsmith(__dirname)
     something: 'something'
   })
   .clean(true)
-  .use(withLiveReload ? metalsmithExpress() : function () {})
-  .use(withLiveReload ? watch({
-    paths: {
-      '${source}/**/*': true,
-      'partials/*.html': '*.html',
-      'layouts/*.html': '*.html'
-    },
-    livereload: true
-  }) : function () {}
-  )
   .use(inplace({
     engine: 'swig',
     pattern: '**/*.html',
@@ -42,10 +26,15 @@ metalsmith(__dirname)
   }))
   .ignore([path.join(__dirname, './src/assets/js/*'), path.join(__dirname, './src/assets/sass/*')])
   .use(webpack({
-    devtool: 'source-map',
     module: {
-      loaders: [
-        { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass')  }
+      rules: [
+        {
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader','sass-loader']
+          })
+        }
       ]
     },
     entry: {
@@ -56,7 +45,7 @@ metalsmith(__dirname)
       filename: '[name].bundle.js'
     },
     plugins: [
-      new ExtractTextPlugin('../css/main.css', { disable: false, allChunks: true })
+      new ExtractTextPlugin({filename: 'main.css'})
     ]
   }))
   .build(function (err) {
